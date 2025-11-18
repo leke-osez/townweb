@@ -1,39 +1,33 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import TopNav from "@/components/container/nav/topNav";
+import Banner from "@/components/landingPage/banner";
+import Partnership from "@/components/landingPage/partnerships";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
-})
+});
 
 function App() {
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
+    <div className="w-full flex justify-center ">
+      <div className="max-w-[2000px] w-full">
+        <div className="bg-background">
+          <TopNav />
+          <Banner />
+        </div>
+
+        {/* <section className="w-full flex justify-center mt-8">
+          <img
+            src="https://assets-global.website-files.com/5fd9ec20a182fdcd717d73c6/615e19e10ad3a071a2feb414_ARPAwebsitebutton.png"
+            alt="Town Web Services Qualify for American Rescue Plan (ARPA) Funding"
+            className="w-full max-w-120"
+          ></img>
+        </section> */}
+        <Partnership />
+        <p className="absolute bottom-5 left-5 md:bottom-10 md:left-10 text-gray-500 text-sm ">
+          SCROLL TO EXPLORE
         </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+      </div>
     </div>
-  )
+  );
 }
