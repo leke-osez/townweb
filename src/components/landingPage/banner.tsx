@@ -2,26 +2,51 @@ import { cn } from "@/utils/style";
 import { Button } from "../ui/button";
 import ShakeIcon from "../animations/notification";
 import Floating from "../animations/floating";
-import ScrabbleText from "../ui/scrabbleText";
+import { useState } from "react";
+import { ScrabbleTextReveal } from "../animations/scrambleText";
+import { rangeIncrement } from "@/utils/helper";
+const words = [
+  "AFFORDABLE",
+  "ADA COMPLIANT",
+  "UP-TO-DATE",
+  "ELEGANT",
+];
 
 const Banner = () => {
+  const [position, setPosition] = useState(0);
+  const [trigger, setTrigger] = useState(false);
+
+  const changeWord = () => {
+    // const newWord = words[Math.floor(Math.random() * words.length)];
+    setPosition(rangeIncrement(position, 0, words.length - 1));
+    setTrigger(!trigger); // Toggles the trigger to re-run the animation
+  };
+
   return (
-    <div className="w-full h-screen flex flex-col">
-      <div className="px-8 md:px-12 xl:px-20 flex gap-4 md:gap-10 justify-between h-fit">
-        <section className="flex flex-col gap-5 w-fit text-3xl md:text-6xl font-normal whitespace-nowrap mt-4 md:mt-16 text-gray-700">
-          <p className="">HI THERE!</p>
-          <p>WE ARE TOWN WEB</p>
-          <div className={"flex gap-2"}>
-            <p>WE BUILD</p>
-            <ScrabbleText
-              text="web"
-              className="text-red-800/80 font-medium"
-            />
+    <div className="relative w-full h-screen flex flex-col">
+      <div className="px-8 md:px-12 xl:px-20 flex flex-col items-center md:flex-row gap-4 md:gap-10 justify-between h-fit">
+        <section className="relative z-2  flex flex-col text-center md:text-left gap-5 w-full md:w-fit md:max-w-[50%] text-3xl md:text-5xl xl:text-6xl md:font-normal xl:whitespace-nowrap mt-4 md:mt-16 text-gray-700 font-medium">
+          <div className="flex md:flex-col gap-3 w-full justify-center md:justify-start">
+            <p className="">
+              HI THERE!{" "}
+              <span className="flex sm:hidden">WE ARE TOWN WEB</span>
+            </p>
+            <p className="hidden sm:flex">WE ARE TOWN WEB</p>
           </div>
+
+          <p className={" w-full justify-center md:justify-start"}>
+            <span className="mr-2">WE BUILD</span>
+            <ScrabbleTextReveal
+              targetWord={words[position]}
+              trigger={trigger}
+              onComplete={changeWord}
+              textClass="font-medium "
+            />
+          </p>
           <p>MUNICIPAL WEBSITES</p>
         </section>
-        <section className="flex-1 h-[300px] max-w-[9500px]">
-          <div className="relative h-[200px]">
+        <section className="md:absolute md:right-8 md:w-[50%] flex-1 h-[300px] w-full max-w-[9500px]">
+          <div className="relative h-full">
             <img
               className="absolute "
               src="https://townweb.com/assets/images/hero/elements-top.png"
@@ -71,19 +96,19 @@ const Banner = () => {
           </div>
         </section>
       </div>
-      <section className="w-full flex-1 relative flex items-center gap-3 md:gap-5 justify-center mt-6 md:mt-8 xl:mt-16">
+      <section className="px-3 w-full flex-1 relative flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-5 justify-center mt-6 md:mt-8 xl:mt-16">
         <Button
           className={cn(
-            "text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-gray-900 shadow-md rounded-none rounded-es-3xl"
+            "w-full sm:w-fit max-w-[300px] text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-gray-900 shadow-md rounded-none rounded-ee-[20%] rounded-es-[20%]"
           )}
         >
           Request a Quote
         </Button>
 
-        <ShakeIcon>
+        <ShakeIcon className="w-full sm:w-fit max-w-[300px]">
           <Button
             className={cn(
-              "text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-amber-600 hover:bg-amber-600/70 shadow-md rounded-none rounded-ee-3xl"
+              "w-full text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-amber-600 hover:bg-amber-600/70 shadow-md rounded-none rounded-ee  -[20%] rounded-es-[20%]"
             )}
           >
             Book a Demo

@@ -18,6 +18,7 @@ const Floating = ({ children, duration }: Props) => {
         repeat: Infinity,
         ease: "easeInOut",
       }}
+      className=""
     >
       {children}
     </motion.div>
