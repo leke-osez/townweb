@@ -6,35 +6,57 @@ import fileSearchIllustration from "@/assets/images/file-searching.png";
 export const servicesList = [
   {
     title: "Strategy",
-    services: ["Research & Insights", "Research & Insights"],
+    services: [
+      "ADA 508 Compliant",
+      "Accessible Websites",
+      "Inclusive User Access",
+      "Compliance-First Build",
+    ],
     description:
-      "Your brand’s compass. It defines purpose, sharpens positioning, and ensures every decision you make resonates with your audience while driving business growth. ",
+      "All sites are ADA 508 Compliant, which allows people with disabilities to access your website pages and files with ease.",
     img: { src: strategyIllustration, alt: "strategy" },
     buttonProps: { text: "Hire Us", action: () => {} },
   },
 
   {
     title: "Website",
-    services: ["Research & Insights", "Research & Insights"],
+    services: [
+      "User-First Design",
+      "Best-Practice Security",
+      // "Secure UX",
+      "Quality-Driven Build",
+      "Standards-Based Development",
+    ],
     description:
-      "Your brand’s compass. It defines purpose, sharpens positioning, and ensures every decision you make resonates with your audience while driving business growth. ",
+      "Your site will be built with the best user experience in mind and will be secure because we strictly adhere to best practices",
     img: { src: websiteIllustration, alt: "strategy" },
     buttonProps: { text: "Hire Us", action: () => {} },
   },
 
   {
     title: "Content Design",
-    services: ["Research & Insights", "Research & Insights"],
+    services: [
+      "Localized Information",
+      "Curated Public Content",
+      "Tailored Municipal Content",
+      "Community-Centric Experience",
+    ],
     description:
-      "Your brand’s compass. It defines purpose, sharpens positioning, and ensures every decision you make resonates with your audience while driving business growth. ",
+      "Your website is designed with your residents in mind. We curate the best contents tailored to fit your municipal",
     img: { src: contentTeam, alt: "strategy" },
     buttonProps: { text: "Hire Us", action: () => {} },
   },
   {
     title: "File Management & Accessibility",
-    services: ["Research & Insights", "Research & Insights"],
+    services: [
+      "Centralized Documents",
+      "Organized by Category",
+      // "Easy Document Access",
+      "Quick Information Retrieval",
+      "Search-Friendly Records",
+    ],
     description:
-      "Your brand’s compass. It defines purpose, sharpens positioning, and ensures every decision you make resonates with your audience while driving business growth. ",
+      "All your official government documents are stored and collated by category. Everyone can quickly find what they're looking for!",
     img: { src: fileSearchIllustration, alt: "strategy" },
     buttonProps: { text: "Hire Us", action: () => {} },
   },

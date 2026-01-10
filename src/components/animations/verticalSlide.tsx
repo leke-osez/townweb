@@ -32,18 +32,15 @@ export const SlideOverSection = ({
   );
 
   // Calculate Shadow intensity
-  const shadowIntensity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 1],
-    [0, 0.15, 0.3]
-  );
+  // const shadowIntensity = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.3, 1],
+  //   [0, 0.15, 0.3]
+  // );
 
-  console.log(shadowIntensity);
-
-  const boxShadow = useTransform(shadowIntensity, (value) => {
-    console.log();
-    return `0 -10px 40px -10px rgba(0, 0, 0, ${value * 2})`;
-  });
+  // const boxShadow = useTransform(shadowIntensity, (value) => {
+  //   return `0 -10px 40px -10px rgba(0, 0, 0, ${value * 2})`;
+  // });
 
   // Calculate z-index based on section order - higher index = higher z-index
   const zIndex = index + 1;
@@ -55,9 +52,9 @@ export const SlideOverSection = ({
         scale,
         opacity,
         zIndex,
-        boxShadow,
+        // boxShadow,
       }}
-      className={`sticky top-0 h-screen overflow-hidden ${className}`}
+      className={`sticky top-0 h-fit overflow-hidden ${className}`}
     >
       <div className="h-full w-full">{children}</div>
     </motion.div>

@@ -1,6 +1,8 @@
 import { Button } from "../ui/button";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { InfinityCarousel } from "../animations/inifinityCarousel";
+import BrandLogoCarousel from "./brandLogoCarousel";
 
 // const partnersLogos = [
 //   {
@@ -38,7 +40,7 @@ const Partnership = () => {
   return (
     <div className="bg-black flex flex-col items-center gap-4 w-full p-3 py-5 md:py-10 text-white min-h-[200px]">
       <p className="text-sm border-l-2 border-b-2 border-amber-400 p-2 pt-0 pb-1 rounded-lg font-semibold">
-        Since 2010
+        Since 2007
       </p>
       <section className="w-full flex justify-center mt-8 opacity-80">
         <img
@@ -62,10 +64,12 @@ const Partnership = () => {
         }
       </p>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full">
         <p className="text-white/80">Partnerships</p>
 
-        <div className="w-[50%]"></div>
+        <div className="overflow-x-hidden max-w-[800px] w-full">
+          <BrandLogoCarousel />
+        </div>
       </div>
 
       <Button className="bg-[#2c2c2c] text-white flex items-center gap-2 ">
