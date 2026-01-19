@@ -1,6 +1,6 @@
 import { cn } from "@/utils/style";
 import * as RadioPrimitive from "@radix-ui/react-radio-group";
-import { forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 export const RadioPrimitiveRoot = forwardRef<
   React.ComponentRef<typeof RadioPrimitive.Root>,
@@ -56,7 +56,8 @@ export const RadioContainer = ({
   onValueChange,
   className,
   ...props
-}: RadioContainerProps) => {
+}: ComponentPropsWithoutRef<typeof RadioPrimitiveRoot> &
+  RadioContainerProps) => {
   return (
     <div className="flex flex-col gap-2">
       <p className={cn("text-gray-600 font-medium", titleClass)}>
@@ -71,11 +72,13 @@ export const RadioContainer = ({
         // defaultValue={BuildDuration.NEXT_FEW_MONTHS}
         onValueChange={onValueChange}
       >
-        {itemList.map((item) => (
-          <RadioItem key={item.id} id={item.id} value={item.value}>
-            {item.label}
-          </RadioItem>
-        ))}
+        <div className="ml-4">
+          {itemList.map((item) => (
+            <RadioItem key={item.id} id={item.id} value={item.value}>
+              {item.label}
+            </RadioItem>
+          ))}
+        </div>
       </RadioPrimitiveRoot>
     </div>
   );

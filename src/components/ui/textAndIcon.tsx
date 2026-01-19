@@ -39,7 +39,9 @@ const TextWithIcon = ({
       )}
       onClick={onClick}
     >
-      <p className={cn(`text-main_bg`, textClass)}>{text}</p>
+      <p className={cn(`text-black/80`, textClass)}>
+        {text?.toUpperCase()}
+      </p>
       <div className={cn(` `)}>
         {image && (
           <img

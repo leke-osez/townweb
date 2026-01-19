@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { InfinityCarousel } from "../animations/inifinityCarousel";
+// import { InfinityCarousel } from "../animations/inifinityCarousel";
 import BrandLogoCarousel from "./brandLogoCarousel";
 
 // const partnersLogos = [

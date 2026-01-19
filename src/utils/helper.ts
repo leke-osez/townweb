@@ -72,3 +72,7 @@ export function generateUnicodeString(text: string): {
     ...textList.map((_, i) => text.charCodeAt(i)),
   ];
 }
+
+export const getCurrentQuarter = (date = new Date()) => {
+  return Math.ceil((date.getMonth() + 1) / 3);
+};

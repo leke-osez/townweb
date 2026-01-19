@@ -13,7 +13,7 @@ const navList = [
   { id: "features", name: "Features" },
   { id: "services", name: "Services" },
   { id: "resources", name: "Resources" },
-  { id: "meet-the-team", name: "Meet The Team" },
+  { id: "about", name: "About Us" },
   { id: "request-quote", name: "Request Quote" },
   { id: "support", name: "Support" },
 ];

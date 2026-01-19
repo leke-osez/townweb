@@ -9,26 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as OurTeamRouteImport } from './routes/our-team'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SupportIndexRouteImport } from './routes/support/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as BlogAllRouteImport } from './routes/blog/all'
 import { Route as BlogBlogIdRouteImport } from './routes/blog/$blogId'
 import { Route as LandingPageLandingPageRouteImport } from './routes/_landing-page/_landingPage'
 
-const OurTeamRoute = OurTeamRouteImport.update({
-  id: '/our-team',
-  path: '/our-team',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportIndexRoute = SupportIndexRouteImport.update({
+  id: '/support/',
+  path: '/support/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogAllRoute = BlogAllRouteImport.update({
@@ -48,60 +54,64 @@ const LandingPageLandingPageRoute = LandingPageLandingPageRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/our-team': typeof OurTeamRoute
   '/blog/$blogId': typeof BlogBlogIdRoute
   '/blog/all': typeof BlogAllRoute
+  '/about': typeof AboutIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/support': typeof SupportIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/our-team': typeof OurTeamRoute
   '/blog/$blogId': typeof BlogBlogIdRoute
   '/blog/all': typeof BlogAllRoute
+  '/about': typeof AboutIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/support': typeof SupportIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/our-team': typeof OurTeamRoute
   '/_landing-page/_landingPage': typeof LandingPageLandingPageRoute
   '/blog/$blogId': typeof BlogBlogIdRoute
   '/blog/all': typeof BlogAllRoute
+  '/about/': typeof AboutIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/support/': typeof SupportIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/our-team' | '/blog/$blogId' | '/blog/all' | '/blog'
+  fullPaths:
+    | '/'
+    | '/blog/$blogId'
+    | '/blog/all'
+    | '/about'
+    | '/blog'
+    | '/support'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/our-team' | '/blog/$blogId' | '/blog/all' | '/blog'
+  to: '/' | '/blog/$blogId' | '/blog/all' | '/about' | '/blog' | '/support'
   id:
     | '__root__'
     | '/'
-    | '/our-team'
     | '/_landing-page/_landingPage'
     | '/blog/$blogId'
     | '/blog/all'
+    | '/about/'
     | '/blog/'
+    | '/support/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OurTeamRoute: typeof OurTeamRoute
   LandingPageLandingPageRoute: typeof LandingPageLandingPageRoute
   BlogBlogIdRoute: typeof BlogBlogIdRoute
   BlogAllRoute: typeof BlogAllRoute
+  AboutIndexRoute: typeof AboutIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  SupportIndexRoute: typeof SupportIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/our-team': {
-      id: '/our-team'
-      path: '/our-team'
-      fullPath: '/our-team'
-      preLoaderRoute: typeof OurTeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -109,11 +119,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support/': {
+      id: '/support/'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/all': {
@@ -142,11 +166,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OurTeamRoute: OurTeamRoute,
   LandingPageLandingPageRoute: LandingPageLandingPageRoute,
   BlogBlogIdRoute: BlogBlogIdRoute,
   BlogAllRoute: BlogAllRoute,
+  AboutIndexRoute: AboutIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  SupportIndexRoute: SupportIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

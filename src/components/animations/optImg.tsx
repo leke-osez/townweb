@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 type OptImgProps = {
-  alt: string;
+  alt?: string;
   className?: string;
   width?: number;
   height?: number;

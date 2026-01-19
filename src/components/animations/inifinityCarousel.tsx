@@ -23,8 +23,8 @@ type Props = {
   logoList: LogoItem[];
   type?: "text" | "image" | "comp";
   imgClass?: string;
-  imgWidth: number;
-  imgMargin: number;
+  imgWidth?: number;
+  imgMargin?: number;
 };
 
 export const InfinityCarousel = ({
@@ -32,7 +32,7 @@ export const InfinityCarousel = ({
   type = "text",
   imgClass,
   imgWidth,
-  imgMargin,
+  // imgMargin,
 }: Props) => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 

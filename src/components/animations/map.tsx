@@ -114,7 +114,7 @@ const geoUrl =
 
 function getRegionByName(stateName: string) {
   return Object.keys(REGIONS).find((region) =>
-    REGIONS[region].includes(stateName)
+    REGIONS[region].includes(stateName),
   );
 }
 
@@ -125,10 +125,10 @@ type Props = {
 
 export default function USRegionMap({
   handleColorChange,
-  regionColors,
+  // regionColors,
 }: Props) {
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(
-    "West"
+    "West",
   );
   const handleColor = (region: string | null) => {
     handleColorChange(region);
@@ -206,7 +206,7 @@ export default function USRegionMap({
                       {town}
                     </p>
                   </div>
-                )
+                ),
             )}
         </div>
       </section>

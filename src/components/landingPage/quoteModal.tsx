@@ -17,24 +17,36 @@ import {
 import { Button } from "../ui/button";
 import { CaretLeftIcon } from "@phosphor-icons/react";
 import {
-  mainGoalForSite,
+  addedFormSelectOptions,
   municipalitiesData,
-  type MunicipalitiesData,
+  // type MunicipalitiesData,
 } from "@/data/quoteForm";
 import { Combobox } from "@headlessui/react";
 import { ComboboxOptions } from "@headlessui/react";
 import { ComboboxOption } from "@headlessui/react";
 import { ComboboxInput } from "../ui/combobox";
 import { Label } from "@headlessui/react";
+import { delay } from "lodash";
+import { CaretRightIcon } from "@phosphor-icons/react";
+import { cn } from "@/utils/style";
+import BookCalendar from "../ui/bookCalendar";
+import type { QuoteFormValues } from "@/types";
 
-const initialFormValues = {
+const initialFormValues: QuoteFormValues = {
   firstName: "",
   lastName: "",
   email: "",
   phoneNumber: "",
   municipalName: "",
   durationForBuild: "",
-  webstite: "",
+  webstiteGoal: "",
+  addedFeature: "",
+  includeOnlinePayment: "",
+  digitizeForms: "",
+  includeFacilityBooking: "",
+  requirementForUnlimitedSupport: "",
+  yearExpected: null,
+  quarterExpected: null,
 };
 const QuoteModal = ({
   isOpen,
@@ -73,17 +85,28 @@ const QuoteForm = memo(
     handleSubmit: (values: typeof initialFormValues) => void;
   }) => {
     const [formSteps, setFormSteps] = useState<number>(0);
-    const [query, setQuery] = useState("");
+    const [_, setQuery] = useState("");
 
     const handleRadio = (
       name: string,
       value: string,
-      setFieldValue: (field: string, value: string) => void
+      setFieldValue: (field: string, value: string) => void,
     ) => {
-      if (formSteps < 1) setFormSteps(1);
-      if (formSteps > 0) setFormSteps((prev) => prev + 1);
-      console.log(formSteps);
       setFieldValue(name, value);
+
+      delay(() => {
+        if (formSteps < 1) setFormSteps(1);
+        if (formSteps > 0) setFormSteps((prev) => prev + 1);
+        console.log(formSteps);
+      }, 300);
+    };
+
+    const handleDurationRadioButton = (
+      value: string,
+      setFieldValue: (field: string, value: string) => void,
+    ) => {
+      setFieldValue("durationForBuild", value);
+      setFormSteps(1);
     };
 
     return (
@@ -92,7 +115,7 @@ const QuoteForm = memo(
         onSubmit={handleSubmit}
         validationSchema={QuoteValidationSchema}
       >
-        {({ handleSubmit, setFieldValue }) => (
+        {({ handleSubmit, setFieldValue, values, isValid }) => (
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-4"
@@ -165,44 +188,51 @@ const QuoteForm = memo(
               </Select>
               <Select /> */}
                 <Combobox
-                  value={query}
-                  onChange={setQuery}
+                  value={values.municipalName}
+                  onChange={(val: string) => {
+                    setFieldValue("municipalName", val);
+                  }}
                   onClose={() => setQuery("")}
-                  as="Fragment"
+                  as="fragment"
                 >
-                  <Label>
-                    <label className="text-gray-600 font-medium">
-                      {"Municipality Name *"}
-                    </label>
-                  </Label>
-                  <ComboboxInput
-                    aria-label="Assignee"
-                    displayValue={(municipal: MunicipalitiesData) =>
-                      municipal?.option
-                    }
-                    onChange={(
-                      event: React.ChangeEvent<HTMLInputElement>
-                    ) => setQuery(event.target.value)}
-                    placeholder="Select municipality name"
-                  />
-                  <ComboboxOptions
-                    anchor="bottom"
-                    className="border empty:invisible"
-                  >
-                    {municipalitiesData.map((municipal) => (
-                      <ComboboxOption
-                        key={municipal.id}
-                        as="Fragment"
-                        value={{
-                          id: municipal.id,
-                          name: municipal.value,
-                        }}
-                        className="data-focus:bg-blue-100"
-                      >
-                        {municipal.option}
-                      </ComboboxOption>
-                    ))}
-                  </ComboboxOptions>
+                  <div className="relative w-72">
+                    <Label>
+                      <label className="text-gray-600 font-medium">
+                        {"Municipality Name *"}
+                      </label>
+                    </Label>
+                    <ComboboxInput
+                      aria-label="Assignee"
+                      displayValue={(municipal: { name: string }) =>
+                        municipal?.name
+                      }
+                      onChange={(
+                        event: React.ChangeEvent<HTMLInputElement>,
+                      ) => setQuery(event.target.value)}
+                      placeholder="Select municipality name"
+                    />
+                    <ComboboxOptions
+                      // anchor="bottom"
+                      className="absolute flex flex-col z-2929 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg"
+                    >
+                      {municipalitiesData.map((municipal) => (
+                        <div className="w-full flex flex-col ">
+                          <ComboboxOption
+                            key={municipal.id}
+                            as="fragment"
+                            value={{
+                              id: municipal.id,
+                              name: municipal.value,
+                            }}
+                            className="data-focus:bg-blue-100 w-full py-1 md:py-2 px-2"
+                          >
+                            {municipal.option}
+                          </ComboboxOption>
+                          <hr className="border-gray-200" />
+                        </div>
+                      ))}
+                    </ComboboxOptions>
+                  </div>
                 </Combobox>
                 {/* <MyTextField
                   label="Municipality Name *"
@@ -224,11 +254,7 @@ const QuoteForm = memo(
                   name="durationForBuild"
                   // defaultValue={BuildDuration.NEXT_FEW_MONTHS}
                   onValueChange={(val) =>
-                    handleRadio(
-                      "durationForBuild",
-                      val,
-                      setFieldValue
-                    )
+                    handleDurationRadioButton(val, setFieldValue)
                   }
                 >
                   <RadioItem
@@ -253,12 +279,20 @@ const QuoteForm = memo(
                 setStep={setFormSteps}
                 handleRadio={handleRadio}
                 setFieldValue={setFieldValue}
+                values={values}
               />
             )}
 
             <Button
               type="submit"
-              className="w-full bg-red-600/90 text-lg sm:text-xl font-medium sm:font-semibold h-auto py-2 my-3"
+              className={cn(
+                "w-full text-lg sm:text-xl font-medium sm:font-semibold h-auto py-2 my-3",
+                {
+                  "bg-red-600/90": isValid,
+                  "bg-gray-400": !isValid,
+                },
+              )}
+              disabled={!isValid}
             >
               Get My Quote
             </Button>
@@ -266,7 +300,7 @@ const QuoteForm = memo(
         )}
       </Formik>
     );
-  }
+  },
 );
 
 const ExtraFormSteps = ({
@@ -274,19 +308,37 @@ const ExtraFormSteps = ({
   setStep,
   handleRadio,
   setFieldValue,
+  values,
 }: {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
   handleRadio: (
     name: string,
     value: string,
-    setFieldValue: (field: string, value: string) => void
+    setFieldValue: (
+      field: string,
+      value: string | number | null,
+    ) => void,
   ) => void;
-  setFieldValue: (field: string, value: string) => void;
+  setFieldValue: (
+    field: string,
+    value: string | number | null,
+  ) => void;
+  values: typeof initialFormValues;
 }) => {
   const goBack = () => {
     step > 1 && setStep(step - 1);
   };
+
+  const goForward = () => {
+    step < addedFormSelectOptions.length && setStep(step + 1);
+  };
+
+  // ensure TypeScript knows this is a key of the form values
+  const prevIndex = step - 1;
+
+  const currentKey = addedFormSelectOptions[prevIndex]
+    .id as keyof typeof values;
 
   return (
     <div className="w-full rounded-md border border-gray-300 bg-[#F8FAFC] p-3 py-4">
@@ -296,25 +348,67 @@ const ExtraFormSteps = ({
         ballpark figure as soon as possible.
       </p>
 
-      <section className="opacity-0 translate-y-2 animate-[fadeUp_0.5s_ease-out_forwards] shadow-md rounded-md border border-gray-200 p-3 bg-white mb-4">
-        {step > 1 && (
-          <Button
-            variant={"plain"}
-            onClick={goBack}
-            className="px-0 py-2"
-          >
-            <CaretLeftIcon size={20} />
-          </Button>
+      <section className="opacity-0 translate-y-2 animate-[fadeUp_0.5s_ease-out_forwards] shadow-md rounded-md border border-gray-200 p-3 bg-white mb-4 flex flex-col gap-3">
+        <div className="w-full flex justify-between">
+          {step > 1 && (
+            <Button
+              variant={"plain"}
+              onClick={goBack}
+              className="px-0 py-2"
+            >
+              <CaretLeftIcon size={20} /> Back
+            </Button>
+          )}
+
+          {step < addedFormSelectOptions.length && (
+            <Button
+              variant={"plain"}
+              onClick={goForward}
+              className="px-0 py-2"
+            >
+              Next
+              <CaretRightIcon size={20} />
+            </Button>
+          )}
+        </div>
+
+        {step < addedFormSelectOptions.length && (
+          <RadioContainer
+            // value={"communityInformation"}
+            value={values[currentKey] as string}
+            title={addedFormSelectOptions[prevIndex].title}
+            titleClass=""
+            itemList={addedFormSelectOptions[prevIndex].content}
+            onValueChange={(val) =>
+              handleRadio(
+                addedFormSelectOptions[prevIndex].id,
+                val,
+                setFieldValue,
+              )
+            }
+            className=""
+          />
         )}
-        <RadioContainer
-          title="What would be the main goal of your website? Do you intend for the website to only have the essential information or do you envision it growing with the municipality? *"
-          titleClass=""
-          itemList={mainGoalForSite}
-          onValueChange={(val) =>
-            handleRadio("durationForBuild", val, setFieldValue)
-          }
-          className=""
-        />
+
+        {step === addedFormSelectOptions.length && (
+          <div className="w-full flex flex-col gap-4">
+            <p className="text-gray-600 font-medium">
+              When would you like your new website live? *
+            </p>
+            <div className="w-full flex justify-center">
+              <BookCalendar
+                setYear={(val: number) =>
+                  setFieldValue("yearExpected", val)
+                }
+                year={values["yearExpected"] ?? 0}
+                quarter={values["quarterExpected"] ?? 0}
+                setQuarter={(val: number) =>
+                  setFieldValue("quarterExpected", val)
+                }
+              />
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

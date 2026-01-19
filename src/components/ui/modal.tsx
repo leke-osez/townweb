@@ -95,10 +95,10 @@ export const Modal = ({
 
     <Dialog.Root open={isOpen} onOpenChange={close} modal={true}>
       <Dialog.Portal>
-        <Dialog.Overlay className="z-292929 fixed inset-0 bg-[rgba(0,0,0,0.25)] bg-opacity-75 transition-opacity" />
+        <Dialog.Overlay className="z-999 fixed inset-0 bg-[rgba(0,0,0,0.25)] bg-opacity-75 transition-opacity" />
         <Dialog.Content
           className={cn(
-            "z-292929 bg-white fixed top-1/2 w-full  max-w-[97vw] sm:max-w-[80vw] md:max-w-[70vw] max-h-[90vh] left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg p-3 shadow-xl transition-all",
+            "z-999 bg-white fixed top-1/2 w-full  max-w-[97vw] sm:max-w-[80vw] md:max-w-[70vw] max-h-[90vh] left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg p-3 shadow-xl transition-all",
             contentClass
           )}
         >
