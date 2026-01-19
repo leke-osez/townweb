@@ -3,31 +3,7 @@ import { Button } from "../ui/button";
 import BlogCard from "../container/cards/blogCard";
 import { useNavigate } from "@tanstack/react-router";
 import { AppRoutes } from "@/appRoutes";
-
-const blogsSnippets = [
-  {
-    title: "How to make your website ADA compliant",
-    slug: "make-your-website-ada-compliant",
-    imageURL:
-      "https://storage.googleapis.com/juniper-media-library/92/2025/04/TW%20blog%20header%20(1)-1.png",
-    desc: "Learn the essential steps to ensure your municipal website meets ADA compliance standards and is accessible to all users.",
-  },
-  {
-    title: "Simple Solutions for Municipal Rentals",
-    slug: "solution-for-municipal-rentals",
-    imageURL:
-      "https://storage.googleapis.com/juniper-media-library/92/2024/11/TW%20blog%20header%20(1).png",
-    desc: "As part of our ever-growing ways to help make Clerk-work easier: Town Web now boasts a digital transformation strategy that simplifies municipal rentals.",
-  },
-  {
-    title:
-      "Why Every Municipality Needs Board Management Software (Yes, Even Yours)",
-    slug: "why-you-need-board-management-software",
-    imageURL:
-      "https://storage.googleapis.com/juniper-media-library/92/2025/07/TW%20blog%20header.png",
-    desc: "The Need for Digital Transformation When it comes to local government, there’s one thing every",
-  },
-];
+import { blogsSnippets } from "@/data/general";
 
 const BlogSection = () => {
   const navigate = useNavigate();
