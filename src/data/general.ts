@@ -86,7 +86,7 @@ export const employeesData: EmployeesData = [
     name: "dado",
     id: "DADO",
     imgUrl:
-      "https://storage.googleapis.com/juniper-media-library/92/2025/02/DADO-card.png",
+      "https://storage.googleapis.com/juniper-media-library/92/2025/02/dado-card.png",
     dept: [Department.CUSTOMER_SUCCESS],
     quote: "",
   },
