@@ -4,7 +4,8 @@ type BlogCardProps = {
   title: string;
   imageURL: string;
   desc: string;
-  handleClick?: () => void;
+  handleClick?: (id: string) => void;
+  id: string;
 };
 
 const BlogCard = ({
@@ -12,12 +13,15 @@ const BlogCard = ({
   imageURL,
   desc,
   handleClick,
+  id,
 }: BlogCardProps) => {
   return (
     <Button
       variant={"plain"}
       className="w-full h-auto flex flex-col gap-2 items-center max-w-[400px] p-0 group"
-      onClick={handleClick}
+      onClick={() => {
+        handleClick && handleClick(id);
+      }}
     >
       <img
         src={imageURL}

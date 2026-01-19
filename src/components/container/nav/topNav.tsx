@@ -57,6 +57,14 @@ const TopNav = ({ className, handleMenu }: Props) => {
   const visible = useHideOnScroll({ showAfter: 80 });
   // const { pathname } = useLocation();
 
+  const bookMeeting = () => {
+    window.open(
+      "https://appt.link/town-web/demo",
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
   return (
     <nav
       className={cn(
@@ -64,7 +72,7 @@ const TopNav = ({ className, handleMenu }: Props) => {
         className,
         visible
           ? "translate-y-0 transition-transform duration-300"
-          : "-translate-y-full transition-transform duration-300"
+          : "-translate-y-full transition-transform duration-300",
         // pathname === "/" ? "md:bg-gray-300" : "md:bg-transparent"
       )}
     >
@@ -91,7 +99,7 @@ const TopNav = ({ className, handleMenu }: Props) => {
               <Button
                 variant={"plain"}
                 className={cn(
-                  `w-fit px-1 text-sm sm:text-base mix-blend-difference`
+                  `w-fit px-1 text-sm sm:text-base mix-blend-difference`,
                 )}
                 key={navItem.id}
                 onClick={() => {
@@ -129,7 +137,7 @@ const TopNav = ({ className, handleMenu }: Props) => {
               <Button
                 variant={"plain"}
                 className={cn(
-                  `w-fit px-1 text-xs sm:text-base mix-blend-difference`
+                  `w-fit px-1 text-xs sm:text-base mix-blend-difference`,
                 )}
                 key={navItem.id}
                 onClick={() => {
@@ -158,7 +166,12 @@ const TopNav = ({ className, handleMenu }: Props) => {
         {/* evenly distribute items */}
       </div>
 
-      <Button className="hidden xl:flex bg-black text-white items-center gap-2 shadow-md">
+      <Button
+        className="hidden xl:flex bg-black text-white items-center gap-2 shadow-md"
+        onClick={() => {
+          bookMeeting();
+        }}
+      >
         <div className="w-2 aspect-square rounded-full bg-green-400"></div>
         <p className="hidden md:flex">GET IN TOUCH</p>
         <ShareIcon className="flex md:hidden" />

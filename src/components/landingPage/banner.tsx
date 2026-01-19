@@ -2,9 +2,10 @@ import { cn } from "@/utils/style";
 import { Button } from "../ui/button";
 import ShakeIcon from "../animations/notification";
 import Floating from "../animations/floating";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ScrabbleTextReveal } from "../animations/scrambleText";
-import { rangeIncrement } from "@/utils/helper";
+import { bookMeeting, rangeIncrement } from "@/utils/helper";
+import { ModalContext } from "@/hooks/providers/modalProvider";
 
 // import SunIcon from "@/assets/comps/sunIcon";
 const words = [
@@ -17,6 +18,7 @@ const words = [
 const Banner = () => {
   const [position, setPosition] = useState(0);
   const [trigger, setTrigger] = useState(false);
+  const { open: openQuoteModal } = useContext(ModalContext);
 
   const changeWord = () => {
     // const newWord = words[Math.floor(Math.random() * words.length)];
@@ -103,8 +105,11 @@ const Banner = () => {
       <section className="px-3 w-full flex-1 relative flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-5 justify-center mt-6 md:mt-8 xl:mt-16">
         <Button
           className={cn(
-            "w-full sm:w-fit max-w-[300px] text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-gray-900 hover:bg-gray-700 shadow-md rounded-none rounded-ee-[20%] rounded-es-[20%]"
+            "w-full sm:w-fit max-w-[300px] text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-gray-900 hover:bg-gray-700 shadow-md rounded-none rounded-ee-[20%] rounded-es-[20%]",
           )}
+          onClick={() => {
+            openQuoteModal();
+          }}
         >
           Request a Quote
         </Button>
@@ -112,8 +117,11 @@ const Banner = () => {
         <ShakeIcon className="w-full sm:w-fit max-w-[300px]">
           <Button
             className={cn(
-              "w-full text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-amber-600 hover:bg-amber-500 shadow-md rounded-none rounded-ee-[20%] rounded-es-[20%]"
+              "w-full text-lg md:text-xl xl:text-2xl font-medium px-4 md:px-10 md:py-3 py-2 h-fit bg-amber-600 hover:bg-amber-500 shadow-md rounded-none rounded-ee-[20%] rounded-es-[20%]",
             )}
+            onClick={() => {
+              bookMeeting();
+            }}
           >
             Book a Demo
           </Button>

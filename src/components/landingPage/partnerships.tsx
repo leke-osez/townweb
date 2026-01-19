@@ -3,6 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import { InfinityCarousel } from "../animations/inifinityCarousel";
 import BrandLogoCarousel from "./brandLogoCarousel";
+import { useNavigate } from "@tanstack/react-router";
+import { AppRoutes } from "@/appRoutes";
 
 // const partnersLogos = [
 //   {
@@ -37,6 +39,7 @@ import BrandLogoCarousel from "./brandLogoCarousel";
 // };
 
 const Partnership = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-black flex flex-col items-center gap-4 w-full p-3 py-5 md:py-10 text-white min-h-[200px]">
       <p className="text-sm border-l-2 border-b-2 border-amber-400 p-2 pt-0 pb-1 rounded-lg font-semibold">
@@ -72,7 +75,12 @@ const Partnership = () => {
         </div>
       </div>
 
-      <Button className="bg-[#2c2c2c] text-white flex items-center gap-2 ">
+      <Button
+        className="bg-[#2c2c2c] text-white flex items-center gap-2 "
+        onClick={() => {
+          navigate({ to: AppRoutes.about });
+        }}
+      >
         <div className="w-2 aspect-square rounded-full bg-green-400"></div>
         <p>About Us</p>
       </Button>

@@ -1,5 +1,7 @@
 import FeatherPenIcon from "@/assets/comps/featherPenIcon";
 import { Button } from "../ui/button";
+import { useContext } from "react";
+import { ModalContext } from "@/hooks/providers/modalProvider";
 
 type Props = {
   index: number;
@@ -18,6 +20,8 @@ const SlideSection = ({
   img,
   buttonProps,
 }: Props) => {
+  const { open: openQuoteModal } = useContext(ModalContext);
+
   return (
     <div className="px-3 md:p-16 ">
       {index < 1 && (
@@ -46,7 +50,9 @@ const SlideSection = ({
 
           <Button
             variant={"outline"}
-            onClick={buttonProps.action}
+            onClick={() => {
+              openQuoteModal();
+            }}
             className="text-lg bg-black text-white sm:bg-transparent sm:text-black sm:border-gray-400 sm:hover:text-white sm:hover:bg-black/90"
           >
             {buttonProps.text}

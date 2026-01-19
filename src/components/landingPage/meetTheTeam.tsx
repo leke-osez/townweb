@@ -1,5 +1,7 @@
 import StylishArrow from "@/assets/comps/stylishArrow";
 import { Button } from "../ui/button";
+import { AppRoutes } from "@/appRoutes";
+import { useNavigate } from "@tanstack/react-router";
 
 const teamMembers = [
   {
@@ -35,6 +37,7 @@ const teamMembers = [
 ];
 
 const MeetTheTeam = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col items-center gap-6 p-3 py-10 xl:px-10">
       <div className="w-full text-xl xl:text-2xl">
@@ -50,7 +53,12 @@ const MeetTheTeam = () => {
           />
         ))}
       </section>
-      <Button className="bg-[#2c2c2c] text-white flex items-center gap-2 group hover:p-2 h-auto p-3 py-2 scale-100 hover:scale-120">
+      <Button
+        className="bg-[#2c2c2c] text-white flex items-center gap-2 group hover:p-2 h-auto p-3 py-2 scale-100 hover:scale-120"
+        onClick={() => {
+          navigate({ to: `/${AppRoutes.about}/#team` });
+        }}
+      >
         <div className="w-2 flex items-center justify-center aspect-square scale-100 rounded-full  bg-green-400 group-hover:scale-300 group-hover:mx-2 group-hover:p-1 transition-transform text-black ">
           <div className="hidden group-hover:flex w-full h-full transform transition-all group-hover:rotate-25  ">
             <StylishArrow className="w-full h-full " />

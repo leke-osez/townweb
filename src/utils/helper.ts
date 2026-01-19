@@ -5,7 +5,7 @@ export function randomBetween(min: number, max: number) {
 export function rangeIncrement(
   currentValue: number,
   min: number,
-  max: number
+  max: number,
 ) {
   const range = max - min + 1;
   // Calculate the new value relative to the minimum, apply modulo, and add the minimum back
@@ -37,7 +37,7 @@ export function createIgnoreList(text: string) {
   const textChars = new Set(text.split(""));
 
   const fullCharSet = Array.from(
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-={}[]|:;\"'<>,.?/~` "
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-={}[]|:;\"'<>,.?/~` ",
   );
 
   // Ignore everything NOT included in text characters
@@ -75,4 +75,12 @@ export function generateUnicodeString(text: string): {
 
 export const getCurrentQuarter = (date = new Date()) => {
   return Math.ceil((date.getMonth() + 1) / 3);
+};
+
+export const bookMeeting = () => {
+  window.open(
+    "https://appt.link/town-web/demo",
+    "_blank",
+    "noopener,noreferrer",
+  );
 };

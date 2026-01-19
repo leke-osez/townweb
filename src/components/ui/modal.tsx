@@ -98,12 +98,12 @@ export const Modal = ({
         <Dialog.Overlay className="z-999 fixed inset-0 bg-[rgba(0,0,0,0.25)] bg-opacity-75 transition-opacity" />
         <Dialog.Content
           className={cn(
-            "z-999 bg-white fixed top-1/2 w-full  max-w-[97vw] sm:max-w-[80vw] md:max-w-[70vw] max-h-[90vh] left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg p-3 shadow-xl transition-all",
-            contentClass
+            "z-999 bg-white fixed top-1/2 w-full  max-w-[97vw] sm:max-w-[80vw] md:max-w-[70vw] max-h-[90vh] left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg md:p-3 shadow-xl transition-all",
+            contentClass,
           )}
         >
           <div
-            className="flex min-h-full w-full items-center justify-center p-4 text-center sm:items-center sm:p-0 "
+            className="flex min-h-full w-full items-center justify-center py-2 text-center sm:items-center sm:p-0 "
             ref={modalRef}
           >
             <Dialog.Title>{title}</Dialog.Title>
@@ -113,13 +113,13 @@ export const Modal = ({
               className={cn(
                 `relative transform overflow-hidden text-left  sm:min-w-[100px] w-full sm:w-fit min-h-fit max-h-[90vh] ${
                   dialogClassName ? dialogClassName : ""
-                }`
+                }`,
               )}
             >
               {showCloseButton && (
-                <div className="w-full flex justify-end p-4">
+                <div className="w-full flex justify-end">
                   <Button
-                    className="px-1"
+                    className=" w-9 h-9 p-0"
                     variant={"plain"}
                     onClick={handleClose}
                   >

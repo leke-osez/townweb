@@ -1,6 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  useLocation,
+  useNavigate,
+} from "@tanstack/react-router";
 import DepartmentTabs from "./_containers/_departmentTabs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Department, employeesData } from "@/data/general";
 import TeamCard from "./_containers/_teamCard";
 import type { EmployeesData } from "@/types";
@@ -12,6 +16,10 @@ import business2 from "@/assets/images/Business2.jpeg";
 import office from "@/assets/images/office.jpeg";
 import { OptImg } from "@/components/animations/optImg";
 import { CheckCheckIcon } from "lucide-react";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { AppRoutes } from "@/appRoutes";
+import { ModalContext } from "@/hooks/providers/modalProvider";
+import StylishArrow from "@/assets/comps/stylishArrow";
 
 export const Route = createFileRoute("/about/")({
   component: RouteComponent,
@@ -36,6 +44,9 @@ function RouteComponent() {
   const handleTab = (id: Department | string) => {
     setActiveTabId(id);
   };
+  const { open: openQuoteModal } = useContext(ModalContext);
+  const { hash } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setEmployeeData([
@@ -44,6 +55,10 @@ function RouteComponent() {
       ),
     ]);
   }, [activeTabId]);
+
+  useScrollToSection(hash?.replace("#", ""), {
+    offset: 80,
+  });
   return (
     <div className="w-full flex flex-col items-center py-8 bg-amber-100/60 px-4">
       <div className="w-full max-w-[1000px] flex flex-col gap-6 items-center">
@@ -128,7 +143,12 @@ function RouteComponent() {
                   ))}
                 </section>
                 <div className="w-full flex justify-center">
-                  <Button className="mt-4 w-full max-w-[300px] font-medium">
+                  <Button
+                    className="mt-4 w-full max-w-[300px] font-medium"
+                    onClick={() => {
+                      navigate({ to: `/${AppRoutes.blog}` });
+                    }}
+                  >
                     Learn More
                   </Button>
                 </div>
@@ -198,7 +218,8 @@ function RouteComponent() {
         </section>
         <div className="w-px h-20 md:h-36 bg-amber-950/60 my-6"></div>
 
-        <section className="text-center">
+        {/* TEAM SECTION */}
+        <section className="text-center" id={"team"}>
           <p className="text-3xl xl:text-6xl font-medium text-gray-600">
             MEET OUR AMAZING{" "}
             <span className="text-amber-950/80 font-semibold">
@@ -239,8 +260,18 @@ function RouteComponent() {
           </section>
 
           <section className="w-full flex flex-col items-center">
-            <Button className="h-auto py-3 px-7 md:px-20 md:py-4 text-xl md:text-2xl">
-              Hire Us
+            <Button
+              className="h-auto py-3 px-7 md:px-20 md:py-4 text-xl md:text-2xl flex gap-3 hover:opacity-85"
+              onClick={() => {
+                openQuoteModal();
+              }}
+            >
+              <div className="w-2 flex items-center justify-center aspect-square scale-100 rounded-full  bg-green-400 group-hover:scale-300 group-hover:mx-2 group-hover:p-1 transition-transform text-black ">
+                <div className="hidden group-hover:flex w-full h-full transform transition-all group-hover:rotate-25  ">
+                  <StylishArrow className="w-full h-full " />
+                </div>
+              </div>
+              <p>Hire Us</p>
             </Button>
           </section>
         </main>

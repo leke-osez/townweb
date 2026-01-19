@@ -65,26 +65,26 @@ const DropDownMenu = ({
                 </h1>
                 <div className="flex flex-col justify-start items-start gap-2">
                   <MenuCard
-                    link={AppRoutes.blog}
+                    link={`/${AppRoutes.blog}`}
                     title="Blogs and Articles"
                     description="Read our latest articles to keep you informed."
                     // Icon={TutorIcon}
                     handleClose={handleClose}
                   />
                   <MenuCard
-                    link={AppRoutes.resources}
+                    link={`/${AppRoutes.resources}`}
                     title="Resources"
                     description="Access our resources to guide you in making a decision to work with us."
                     // Icon={ExamIcon}
                     handleClose={handleClose}
                   />
-                  <MenuCard
+                  {/* <MenuCard
                     link={AppRoutes.services}
                     title="Services"
                     description="Explore our range of services to find the right fit for you."
                     // Icon={StatIcon}
                     handleClose={handleClose}
-                  />
+                  /> */}
                 </div>
               </Disclosure.Panel>
             </>
@@ -116,7 +116,14 @@ const DropDownMenu = ({
                 </h1>
                 <div className="flex flex-col justify-start items-start gap-2">
                   <MenuCard
-                    link={""}
+                    link={`/${AppRoutes.about}`}
+                    title="About Us"
+                    description="Read about our company and values."
+                    // Icon={DashboardIcon}
+                    handleClose={handleClose}
+                  />
+                  <MenuCard
+                    link={`/${AppRoutes.about}/#team`}
                     title="Meet the team"
                     description="See the amazing people behind townweb."
                     // Icon={DashboardIcon}
@@ -141,7 +148,7 @@ const DropDownMenu = ({
             <>
               <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 px-4 py-2 text-left text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring focus-visible:ring-gray-500 focus-visible:ring-opacity-75">
                 <TextWithIcon
-                  text={"Support"}
+                  text={"Get in touch"}
                   comp={<ArrowDown />}
                   width={4}
                   height={4}
@@ -156,13 +163,20 @@ const DropDownMenu = ({
               </Disclosure.Button>
               <Disclosure.Panel className="flex flex-col gap-3 px-4 pt-4 pb-2 text-sm text-gray-500">
                 <h1 className="font-medium text-lg">
-                  We love to help
+                  We love to hear from you
                 </h1>
                 <div className="flex flex-col justify-start items-start gap-2">
                   <MenuCard
-                    link={""}
-                    title="Get in touch"
+                    link={`/${AppRoutes.support}`}
+                    title="Support"
                     description="How can we assist you today?"
+                    // Icon={SettingsIcon}
+                    handleClose={handleClose}
+                  />
+                  <MenuCard
+                    link={`https://appt.link/town-web/demo`}
+                    title="Book a Demo"
+                    description="Book a session, lets discuss."
                     // Icon={SettingsIcon}
                     handleClose={handleClose}
                   />

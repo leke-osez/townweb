@@ -4,7 +4,8 @@ export const AppRoutes = {
   meetTheTeam: "meet-the-team",
   support: "support",
   blog: "blog",
-  requestQuote: "request-quote",
-  resources: "resources",
-  services: "services",
+  about: "about",
+  // requestQuote: "request-quote",
+  resources: "blog",
+  // services: "services",
 };

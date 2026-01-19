@@ -3,6 +3,9 @@ import { Button } from "../ui/button";
 import FacebookIcon from "@/assets/comps/facebook";
 import InstaIcon from "@/assets/comps/insta";
 import TwitterIcon from "@/assets/comps/twitterIcon";
+import { bookMeeting } from "@/utils/helper";
+import { AppRoutes } from "@/appRoutes";
+import { useNavigate } from "@tanstack/react-router";
 // import townWebLogo from "@/assets/images/townweb-logo-real.png";
 
 const Footer = () => {
@@ -12,7 +15,12 @@ const Footer = () => {
         <p className="opacity-90 text-sm md:text-base text-center font-medium text-blue-200">
           BUILD A MUNICIPAL WEBSITE YOUR COMMUNITY WOULD BE PROUD OF
         </p>
-        <Button className="flex items-center gap-2 text-xl md:text-2xl bg-white text-black rounded-full h-auto p-5 px-8">
+        <Button
+          className="flex items-center gap-2 text-xl md:text-2xl bg-white text-black rounded-full h-auto p-5 px-8"
+          onClick={() => {
+            bookMeeting();
+          }}
+        >
           <div className="w-2 aspect-square rounded-full bg-green-400"></div>
           <p>Let's work together</p>
         </Button>
@@ -34,27 +42,35 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2 w-full">
-          <div className="flex-1 flex gap-4 justify-around w-full flex-wrap">
-            <LinkList
-              category="Company"
-              itemList={[
-                { name: "Website Design", link: "#" },
-                { name: "Website Hosting", link: "#" },
-                { name: "Website Management", link: "#" },
-                { name: "Custom Development", link: "#" },
-              ]}
-            />
+          <section className="w-full flex justify-center">
+            <div className="flex-1 flex gap-20 justify-start flex-wrap">
+              <LinkList
+                category="Company"
+                itemList={[
+                  { name: "About Us", link: `/${AppRoutes.about}` },
+                  {
+                    name: "Meet the team",
+                    link: `/${AppRoutes.about}/#team`,
+                  },
+                  { name: "Resources", link: `/${AppRoutes.blog}` },
+                  // { name: "Custom Development", link: "#" },
+                ]}
+              />
 
-            <LinkList
-              category="Services"
-              itemList={[
-                { name: "Website Design", link: "#" },
-                { name: "Website Hosting", link: "#" },
-                { name: "Website Management", link: "#" },
-                { name: "Custom Development", link: "#" },
-              ]}
-            />
-          </div>
+              <LinkList
+                category="Contact"
+                itemList={[
+                  { name: "Support", link: `/${AppRoutes.support}` },
+                  {
+                    name: "Book demo",
+                    link: "https://appt.link/town-web/demo",
+                  },
+                  // { name: "Website Management", link: "#" },
+                  // { name: "Custom Development", link: "#" },
+                ]}
+              />
+            </div>
+          </section>
 
           <div className="flex items-center gap-2 opacity-70 w-full justify-center mt-8">
             <Button className="px-1" variant={"plain"}>
@@ -67,6 +83,51 @@ const Footer = () => {
               <TwitterIcon />
             </Button>
           </div>
+
+          <section className="w-full flex justify-center">
+            <div className="w-fit ">
+              <p className="text-white/70">You can reach us at:</p>
+              <div className="mt-2 flex gap-2 items-center">
+                <p>Email:</p>
+                <a
+                  className=" text-blue-500/70 hover:underline underline-offset-2 font-medium"
+                  href="mailto:sales@townweb.com"
+                >
+                  sales@townweb.com
+                </a>
+              </div>
+
+              <div className="mt-2 flex gap-2 items-center">
+                <p>Toll free:</p>
+                <a
+                  className=" text-blue-500/70 hover:underline underline-offset-2 font-medium"
+                  href="tel:8779958696"
+                >
+                  {"877-995-TOWN (8696)"}
+                </a>
+              </div>
+
+              <div className="mt-2 flex gap-2 items-center">
+                <p>Telephone:</p>
+                <a
+                  className=" text-blue-500/70 hover:underline underline-offset-2 font-medium"
+                  href="tel:9206452823"
+                >
+                  {"920-645-2823"}
+                </a>
+              </div>
+
+              <div className="mt-2 flex gap-2 items-center">
+                <p>FAX:</p>
+                <a
+                  className=" text-blue-500/70 hover:underline underline-offset-2 font-medium"
+                  href="tel:3216009008"
+                >
+                  {"321-600-9008"}
+                </a>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -91,9 +152,18 @@ type Props = {
 };
 
 const LinkList = ({ category, itemList }: Props) => {
+  const navigate = useNavigate();
+  const handleFooterNav = (link: string) => {
+    // Handle navigation logic here
+    if (link.includes("http")) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    } else {
+      navigate({ to: link });
+    }
+  };
   return (
     <div className="flex flex-col gap-2 text-start">
-      <p className="opacity-80 capitalize">
+      <p className="opacity-70 capitalize">
         {category.toUpperCase()}
       </p>
 
@@ -101,7 +171,8 @@ const LinkList = ({ category, itemList }: Props) => {
         {itemList.map((item) => (
           <Button
             key={item.name}
-            className="gap-1 text-start p-0 flex justify-start md:text-lg font-light"
+            className="gap-1 text-start p-0 flex justify-start text-base font-normal hover:underline underline-offset-2  decoration-blue-600"
+            onClick={() => handleFooterNav(item.link)}
           >
             {item?.name}
           </Button>

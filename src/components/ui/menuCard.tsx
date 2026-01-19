@@ -19,7 +19,12 @@ const MenuCard = ({
   const navigate = useNavigate();
 
   const handleNavigateMenu = () => {
-    navigate({ to: link });
+    if (link.includes("http")) {
+      // Handle empty link case
+      window.open(link, "_blank", "noopener,noreferrer");
+    } else {
+      navigate({ to: link });
+    }
     handleClose();
   };
   return (

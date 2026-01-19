@@ -68,6 +68,7 @@ const QuoteModal = ({
         open={open}
         canCloseOnOverlayClick={true}
         contentClass="sm:w-full md:max-w-[600px] sm:max-w-[600px] px-5"
+        showCloseButton
       >
         <p className="text-xl sm:text-2xl font-semibold w-full text-center my-5">
           Please fill out the form to get a quote

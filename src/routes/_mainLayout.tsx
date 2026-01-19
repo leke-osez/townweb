@@ -33,6 +33,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         close={closeQuoteModal}
         toggle={toggleQuoteModal}
         open={openQuoteModal}
+        // showCloseButton
       />
 
       <TopNav handleMenu={handleMenu} />
