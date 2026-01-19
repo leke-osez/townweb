@@ -1,5 +1,5 @@
 import LocationIcon from "@/assets/comps/locationIcon";
-import { useState } from "react";
+// import { useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -119,17 +119,30 @@ function getRegionByName(stateName: string) {
 }
 
 type Props = {
-  handleColorChange: (region: string | null) => void;
+  handleColorChange: (
+    region: string | null,
+    // setRegion: (region: string | null) => void,
+  ) => void;
   regionColors: Record<string, string>;
+  pauseAnimation: () => void;
+  resumeAnimation: () => void;
+  region: string | null;
 };
 
 export default function USRegionMap({
   handleColorChange,
+  pauseAnimation,
+  resumeAnimation,
+  region: hoveredRegion,
   // regionColors,
 }: Props) {
-  const [hoveredRegion, setHoveredRegion] = useState<string | null>(
-    "West",
-  );
+  // const [hoveredRegion, setHoveredRegion] = useState<string | null>(
+  //   "West",
+  // );
+
+  // const setRegion = (region: string | null) => {
+  //   setHoveredRegion(region);
+  // };
   const handleColor = (region: string | null) => {
     handleColorChange(region);
   };
@@ -149,10 +162,11 @@ export default function USRegionMap({
                   key={geo.rsmKey}
                   geography={geo}
                   onMouseEnter={() => {
-                    setHoveredRegion(region ?? null);
+                    // setHoveredRegion(region ?? null);
                     handleColor(region ?? null);
+                    pauseAnimation();
                   }}
-                  // onMouseLeave={() => setHoveredRegion(null)}
+                  onMouseLeave={() => resumeAnimation()}
                   style={{
                     default: {
                       fill: isHovered

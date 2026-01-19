@@ -3,9 +3,9 @@ import { OptImg } from "../animations/optImg";
 
 const Testimonial = () => {
   return (
-    <div className="w-full flex flex-col gap-6 xl:flex-row justify-center my-6">
+    <div className="w-full flex flex-col gap-6 xl:flex-row justify-center my-6 bg-blue-100/10 py-10">
       <div className="w-fit px-4 md:px-10 xl:px-16 flex flex-col gap-6 ">
-        <p>THOUSANDS TRUST TOWN WEB</p>
+        <p className="text-gray-800">THOUSANDS TRUST TOWN WEB</p>
 
         <div className="flex flex-col gap-1 text-2xl md:text-3xl font-medium">
           <h2>{"Don't take our word for it,"}</h2>
