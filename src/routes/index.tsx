@@ -11,6 +11,7 @@ import GetStarted from "@/components/landingPage/getStarted";
 import MeetTheTeam from "@/components/landingPage/meetTheTeam";
 import Partnership from "@/components/landingPage/partnerships";
 import SlideSection from "@/components/landingPage/slideSection";
+import Testimonial from "@/components/landingPage/testimonial";
 import { servicesList } from "@/data/landingPage";
 import { cn } from "@/utils/style";
 import { createFileRoute } from "@tanstack/react-router";
@@ -58,6 +59,7 @@ function App() {
         </div>
         <Collage />
         <MeetTheTeam />
+        <Testimonial />
         <BlogSection />
 
         <GetStarted />

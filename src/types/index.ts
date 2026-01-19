@@ -34,3 +34,12 @@ export type SupportFormValues = {
   uploadedFile: File | null;
   phoneNumber: string;
 };
+
+export type Testimonials = {
+  summary: string;
+  comment: string;
+  jobTitle: string;
+  name: string;
+  location: string;
+  logoUrl: string;
+};

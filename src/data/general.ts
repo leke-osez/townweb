@@ -1,4 +1,4 @@
-import type { EmployeesData } from "@/types";
+import type { EmployeesData, Testimonials } from "@/types";
 
 export enum Department {
   MANAGEMENT = "management",
@@ -169,5 +169,68 @@ export const employeesData: EmployeesData = [
       "https://storage.googleapis.com/juniper-media-library/92/2025/02/hans-card.png",
     dept: [Department.SALES],
     quote: "",
+  },
+];
+
+export const testimonialsData: Array<Testimonials> = [
+  {
+    summary: "“You have made it a joy”",
+    comment:
+      "I wanted to take a moment to express my appreciation on how easy you’ve been to work with. Its been an interesting journey to reach this point, and you have made it a joy. Thank you!”",
+    jobTitle: "Treasurer",
+    name: "Nan Ladehoff",
+    location: "Ponto Lake Township, Minnesota",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/05/Ponto-Lake-Township-2.png",
+  },
+  {
+    summary: "“Couldn't be Happier”",
+    comment:
+      "I couldn't be happier!!! This is a four-year dream come true for me. I love working with the Town Web admin site. And adore your support team members.",
+    jobTitle: "Clerk",
+    name: "Sara Skalle",
+    location: "City of Woodland, Minnesota",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/05/Woodland-color-NO-TREES-1-p-500.png",
+  },
+  {
+    summary: "“A Pretty Effortless Process”",
+    comment:
+      "This is so exciting!!! Thank you so much for all your help. I look forward to getting familiar with it.",
+    jobTitle: "Finance Officer",
+    name: "LeAnne Cutts",
+    location: "Town of Mission Hill, South Dakota",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/05/missionhill.png",
+  },
+  {
+    summary: "“All about the Community”",
+    comment:
+      "This is so awesome to really make our website what you intend it to be, all about the community it represents!",
+    jobTitle: "Supervisor",
+    name: "Chad Niles",
+    location: "Town of Moira, New York",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/05/Moira-p-500.png",
+  },
+  {
+    summary: "“It is easier to look things up”",
+    comment:
+      "I really appreciate all that you guys have done. I’ve had some good feedback and people say it is easier to look things up. Again, Thank you so much",
+    jobTitle: "Clerk",
+    name: "Cindy Beier",
+    location: "Town of Ripon, Wisconsin",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/12/ripon.png",
+  },
+  {
+    summary: "“Always helpful”",
+    comment:
+      "The team is always helpful and answers me in a timely fashion. I met a couple ladies at the WTA convention, finally, this year. It was a pleasure to talk to them.",
+    jobTitle: "Treasurer",
+    name: "Kay Murre",
+    location: "Town of Byron, Wisconsin",
+    logoUrl:
+      "https://storage.googleapis.com/juniper-media-library/92/2024/05/town-of-byron-1-p-500.png",
   },
 ];

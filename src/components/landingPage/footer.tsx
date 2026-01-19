@@ -72,7 +72,7 @@ const Footer = () => {
             </div>
           </section>
 
-          <div className="flex items-center gap-2 opacity-70 w-full justify-center mt-8">
+          <div className="flex items-center gap-2 opacity-70 w-full justify-start xl:justify-center mt-8">
             <Button className="px-1" variant={"plain"}>
               <FacebookIcon />
             </Button>
@@ -84,7 +84,7 @@ const Footer = () => {
             </Button>
           </div>
 
-          <section className="w-full flex justify-center">
+          <section className="w-full flex justify-center xl:justify-start mt-6">
             <div className="w-fit ">
               <p className="text-white/70">You can reach us at:</p>
               <div className="mt-2 flex gap-2 items-center">
