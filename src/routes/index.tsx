@@ -3,6 +3,7 @@ import {
   ScrollReveal,
   SlideOverSection,
 } from "@/components/animations/verticalSlide";
+import { SEO } from "@/components/container/seo/seo";
 import Banner from "@/components/landingPage/banner";
 import BlogSection from "@/components/landingPage/blogSection";
 import Collage from "@/components/landingPage/collage";
@@ -23,6 +24,12 @@ export const Route = createFileRoute("/")({
 function App() {
   return (
     <div className="w-full flex justify-center bg-white p-0 m-0 mix-blend-difference">
+      <SEO
+        title="Townweb — Building Better Digital Experiences"
+        description="A redesigned landing page showcasing Townweb’s mission to build better digital experiences for municipalities."
+        image="https://townweb.vercel.app/preview.png"
+        url="https://townweb.vercel.app/"
+      />
       <div className="max-w-[2000px] w-full flex flex-col items-center">
         <div className="bg-linear-to-r from-[#56CCF2]/80 to-[#2F80ED]/80 w-full">
           {/* <TopNav /> */}
