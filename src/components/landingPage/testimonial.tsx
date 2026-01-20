@@ -3,7 +3,7 @@ import { OptImg } from "../animations/optImg";
 
 const Testimonial = () => {
   return (
-    <div className="w-full flex flex-col gap-6 xl:flex-row justify-center my-6 bg-blue-100/10 py-10">
+    <div className="w-full flex flex-col gap-6 xl:flex-row justify-center my-6 py-10 bg-yellow-200/40">
       <div className="w-fit px-4 md:px-10 xl:px-16 flex flex-col gap-6 ">
         <p className="text-gray-800">THOUSANDS TRUST TOWN WEB</p>
 
@@ -19,9 +19,9 @@ const Testimonial = () => {
         </p>
       </div>
 
-      <section className="flex justify-center">
-        <div className="flex gap-5 md:gap-10 justify-center flex-wrap">
-          {testimonialsData.map((tes) => (
+      <section className="flex flex-1 justify-center md:justify-start">
+        <div className="flex gap-5 md:gap-10 justify-start flex-wrap">
+          {testimonialsData.slice(1, 4).map((tes) => (
             <TestimonialCard
               summary={tes.summary}
               comment={tes.comment}
@@ -58,7 +58,7 @@ const TestimonialCard = ({
     <div className="flex flex-col gap-2 w-full max-w-[300px] bg-gray-300/5 p-4 border border-gray-400/15">
       <p className="text-xl font-medium">{summary}</p>
       <p className="text-gray-700 italic">{comment}</p>
-      <section className="flex gap-2 items-start mt-4">
+      <section className="flex gap-2 justify-between w-full items-start mt-4">
         <OptImg
           sources={[
             {
@@ -68,7 +68,7 @@ const TestimonialCard = ({
           ]}
           className="w-20"
         />
-        <div className="flex-1 flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-2 ">
           <p className="line-clamp-2 ">{name}</p>
           <p className="line-clamp-2 text-gray-600 text-sm">
             {location}

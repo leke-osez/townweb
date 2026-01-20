@@ -2,31 +2,45 @@ import StylishArrow from "@/assets/comps/stylishArrow";
 import { Button } from "../ui/button";
 import { AppRoutes } from "@/appRoutes";
 import { useNavigate } from "@tanstack/react-router";
+import { Department } from "@/data/general";
+import { cn } from "@/utils/style";
 
 const teamMembers = [
   {
-    name: "Jakkub",
-    designation: "CEO",
+    name: "Dustin",
+    id: "dustin",
     imgUrl:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGNvcnBvcmF0ZSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://storage.googleapis.com/juniper-media-library/92/2025/02/dustin-card.png",
+    dept: [Department.MANAGEMENT],
+    quote: "",
+    twStyle: "",
   },
   {
-    name: "John",
-    designation: "CTO",
+    name: "Cristina",
+    id: "cristina",
     imgUrl:
-      "https://images.unsplash.com/photo-1670851604042-c56a9f5d179f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGVtcGxveWVlfGVufDB8fDB8fHww",
+      "https://storage.googleapis.com/juniper-media-library/92/2025/02/cristina-card.png",
+    dept: [Department.MANAGEMENT, Department.OPERATIONS],
+    quote: "",
+    twStyle: "bg-blue-200/50",
   },
   {
-    name: "Alex",
-    designation: "Content",
+    name: "Ivan",
+    id: "Ivan",
     imgUrl:
-      "https://plus.unsplash.com/premium_photo-1683121067971-bf3efce082b8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGVtcGxveWVlfGVufDB8fDB8fHww",
+      "https://storage.googleapis.com/juniper-media-library/92/2025/02/ivan-card.png",
+    dept: [Department.MANAGEMENT, Department.PRODUCT],
+    quote: "",
+    twStyle: "bg-yellow-200/50",
   },
   {
-    name: "Doe",
-    designation: "Designer",
+    name: "Jerrica",
+    id: "Jerrica",
     imgUrl:
-      "https://i.pinimg.com/736x/8b/6e/e6/8b6ee616233b7cd727d0c198641ab5cb.jpg",
+      "https://storage.googleapis.com/juniper-media-library/92/2025/02/jerrica-card.png",
+    dept: [Department.MANAGEMENT],
+    quote: "",
+    twStyle: "bg-orange-200/50",
   },
   //   {
   //     name: "Doe",
@@ -48,8 +62,9 @@ const MeetTheTeam = () => {
           <TeamCard
             key={member.name}
             name={member.name}
-            designation={member.designation}
+            designation={Department.MANAGEMENT}
             imgUrl={member.imgUrl}
+            className={member.twStyle}
           />
         ))}
       </section>
@@ -72,13 +87,24 @@ const MeetTheTeam = () => {
 
 type TeamCardProps = {
   name: string;
-  designation: string;
+  designation: Department;
   imgUrl: string;
+  className?: string;
 };
-const TeamCard = ({ name, designation, imgUrl }: TeamCardProps) => {
+const TeamCard = ({
+  name,
+  designation,
+  imgUrl,
+  className,
+}: TeamCardProps) => {
   return (
     <div className="bg-gray-300/10 border h-fit border-gray-500/10 rounded-xl p-2 sm:p-3 flex flex-col gap-3 group  ">
-      <div className="bg-gray-400/40 rounded-xl overflow-hidden">
+      <div
+        className={cn(
+          "bg-gray-400/40 rounded-xl overflow-hidden",
+          className,
+        )}
+      >
         <img
           src={imgUrl}
           alt={name}
@@ -87,8 +113,10 @@ const TeamCard = ({ name, designation, imgUrl }: TeamCardProps) => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm text-gray-600">{designation}</p>
+        <h3 className="text-lg font-semibold capitalize">{name}</h3>
+        <p className="text-sm text-gray-600">
+          {designation.toUpperCase()}
+        </p>
       </div>
     </div>
   );
