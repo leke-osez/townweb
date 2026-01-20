@@ -2,7 +2,7 @@ import LeafIcon from "@/assets/comps/leafIcon";
 import USRegionMap from "../animations/map";
 import HeartIcon from "@/assets/comps/heartIcon";
 import BuildingIcon from "@/assets/comps/buildingIcon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BurgerIcon from "@/assets/comps/burgerIcon";
 
 const REGION_COLORS: Record<string, string> = {
@@ -12,11 +12,11 @@ const REGION_COLORS: Record<string, string> = {
   Northeast: "#a78bfa",
 };
 
-const regionList = Object.keys(REGION_COLORS);
+// const regionList = Object.keys(REGION_COLORS);
 
 const Community = () => {
   const [colorState, setColorState] = useState<string | null>("West");
-  const [isPaused, setIsPaused] = useState(false);
+  const [_, setIsPaused] = useState(false);
 
   const handleColorChange = (
     region: string | null,
@@ -36,23 +36,23 @@ const Community = () => {
     setIsPaused(false);
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      console.log("first");
-      const currentIndex = regionList.findIndex(
-        (rgn) => rgn === colorState,
-      );
-      setColorState(
-        regionList[(currentIndex + 1) % regionList.length],
-      );
-    }, 3000);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     console.log("first");
+  //     const currentIndex = regionList.findIndex(
+  //       (rgn) => rgn === colorState,
+  //     );
+  //     setColorState(
+  //       regionList[(currentIndex + 1) % regionList.length],
+  //     );
+  //   }, 3000);
 
-    if (isPaused) {
-      clearTimeout(timeout);
-    }
+  //   if (isPaused) {
+  //     clearTimeout(timeout);
+  //   }
 
-    return () => clearTimeout(timeout);
-  }, [colorState, isPaused]);
+  //   return () => clearTimeout(timeout);
+  // }, [colorState, isPaused]);
 
   return (
     <div className="relative py-20 flex flex-col gap-4 items-center w-full overflow-x-hidden">
